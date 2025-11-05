@@ -5,13 +5,22 @@ document.addEventListener('DOMContentLoaded', () => {
      * Inicializa a funcionalidade do carrossel de projetos.
      */
     function iniciarCarrossel() {
-        const carrosselInner = document.querySelector('.carrossel-inner');
-        const images = document.querySelectorAll('.carrossel img');
+        // Seleciona APENAS o primeiro carrossel (o principal)
+        const carrosselInner = document.querySelector('#projetos-destaque .carrossel-inner');
+        const images = document.querySelectorAll('#projetos-destaque .carrossel img');
         
-        if (!carrosselInner || images.length === 0) return; 
+        if (!carrosselInner || images.length === 0) {
+            return; 
+        }
 
         const totalImages = images.length;
         let currentIndex = 0;
+
+        // Define a largura total do inner e das imagens
+        carrosselInner.style.width = `${totalImages * 100}%`;
+        images.forEach(img => {
+            img.style.width = `${100 / totalImages}%`;
+        });
 
         function updateCarousel() {
             currentIndex = (currentIndex + 1) % totalImages;
