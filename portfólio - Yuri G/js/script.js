@@ -96,9 +96,63 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /**
+     * Inicializa o modal do projeto Python.
+     */
+    function iniciarModalPython() {
+        const openBtn = document.getElementById('open-python-modal');
+        const closeBtn = document.getElementById('close-python-modal');
+        const modal = document.getElementById('python-modal');
+        const overlay = document.getElementById('modal-overlay');
+
+        if (!openBtn || !closeBtn || !modal || !overlay) return;
+
+        const openModal = () => {
+            modal.classList.add('visible');
+            overlay.classList.add('visible');
+        };
+
+        const closeModal = () => {
+            modal.classList.remove('visible');
+            overlay.classList.remove('visible');
+        };
+
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+    }
+
+    /**
+     * NOVO: Inicializa a funcionalidade de copiar e-mail.
+     */
+    function iniciarCopiaEmail() {
+        const copyElements = document.querySelectorAll('.copy-email');
+        const tooltip = document.getElementById('copy-tooltip');
+        
+        if (!tooltip) return;
+
+        copyElements.forEach(el => {
+            el.addEventListener('click', () => {
+                const email = el.getAttribute('data-copy');
+                navigator.clipboard.writeText(email).then(() => {
+                    // Sucesso! Mostra o tooltip
+                    tooltip.classList.add('show');
+                    // Esconde o tooltip depois de 2 segundos
+                    setTimeout(() => {
+                        tooltip.classList.remove('show');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao copiar e-mail: ', err);
+                });
+            });
+        });
+    }
+
     // Chama as funções para iniciar as funcionalidades da página
     iniciarCarrossel();
     iniciarFlipCards();
     iniciarBotaoVoltarAoTopo(); 
     iniciarSidebarNav(); 
+    iniciarModalPython();
+    iniciarCopiaEmail(); // Adiciona a chamada da nova função
 });

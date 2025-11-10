@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Portfólio</title>
 
-    <link rel="icon" href="imagens/portfolio_icone.png" type="image/png"> 
+    <link rel="icon" href="imagens/favicon.png" type="image/png"> 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,15 +49,17 @@
                     Sou Yuri Gonçalves de Souza, cursando Desenvolvimento de Software Multiplataforma. Buscando meu primeiro emprego na área da computação.
                 </p>
                 <div class="info-contato">
-                    <a href="mailto:yurigoncalvesds@gmail.com" class="email-link">yurigoncalvesds@gmail.com</a>
+                    <span class="email-link copy-email" data-copy="yurigoncalvesds@gmail.com" title="Copiar e-mail">yurigoncalvesds@gmail.com</span>
                     <div class="social-links">
                         <a href="https://github.com/YuridevOH" target="_blank" class="social-icon" title="GitHub"><i class="bi bi-github"></i></a>
                         <a href="https://www.linkedin.com/in/yuri-gon%C3%A7alves-075746296/" target="_blank" class="social-icon" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                        <a href="mailto:yurigoncalvesds@gmail.com" class="social-icon" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                        <span class="social-icon copy-email" data-copy="yurigoncalvesds@gmail.com" title="Copiar e-mail">
+                            <i class="bi bi-envelope-fill"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="botao-download-container">
-                    <a href="Currículo Yuri - TI.pdf" download="Curriculo_Yuri_Goncalves.pdf" class="card-botao btn-primary download-cv-btn">
+                    <a href="/arquivos/Currículo Yuri - TI .pdf" download="Curriculo_Yuri_Goncalves.pdf" class="card-botao btn-primary download-cv-btn">
                         <i class="bi bi-download"></i> Baixar Currículo
                     </a>
                 </div>
@@ -80,11 +82,12 @@
             <h2 class="titulo-secao">Projetos em Destaque</h2> 
             <div class="carrossel">
                 <div class="carrossel-inner">
-                    <img src="/imagens/bhaskara1.png" alt="Projeto 1">
-                    <img src="/imagens/calculadora1.png" alt="Projeto 2">
-                    <img src="/imagens/batalha1.png" alt="Projeto 3">
-                    <img src="/imagens/calculadora 4.png" alt="Projeto 4">
-                    <img src="/imagens/aluno4.png" alt="Projeto 5">
+                    <img src="/imagens/api_1.png" alt="Projeto 1">
+                    <img src="/imagens/bhaskara1.png" alt="Projeto 2">
+                    <img src="/imagens/calculadora1.png" alt="Projeto 3">
+                    <img src="/imagens/batalha1.png" alt="Projeto 4">
+                    <img src="/imagens/calculadora 4.png" alt="Projeto 5">
+                    <img src="/imagens/aluno4.png" alt="Projeto 6">
                 </div>
             </div>
         </section>
@@ -107,22 +110,15 @@
 
             <h3 class="titulo-subsecao">Python</h3>
             <div class="cards-grid">
-                <div class="card-container card-quadrado"> 
-                    <div class="card-inner">
-                        <div class="card-front card-projeto">
-                            <img class="card-imagem" src="/imagens/api_1.png" alt="Preview do Projeto Python">
-                            <div class="card-content">
-                                <h4 class="card-title">Análise de Dados (Pandas)</h4>
-                                <div class="card-botoes">
-                                    <a href="https://github.com/guilhermefpo/CodeWave" target="_blank" class="card-botao btn-primary">Ver GitHub</a>
-                                    <button class="card-botao btn-secondary flip-button">Descrição</button>
-                                </div>
+                <div class="card-container card-quadrado card-container-static"> 
+                    <div class="card-front card-projeto">
+                        <img class="card-imagem" src="/imagens/api_1.png" alt="Preview do Projeto Python">
+                        <div class="card-content">
+                            <h4 class="card-title">Análise de Dados (Pandas)</h4>
+                            <div class="card-botoes">
+                                <a href="https://github.com/guilhermefpo/CodeWave" target="_blank" class="card-botao btn-primary">Ver GitHub</a>
+                                <button id="open-python-modal" class="card-botao btn-secondary">Descrição</button>
                             </div>
-                        </div>
-                        <div class="card-back">
-                            <h4>Análise de Dados (Pandas)</h4>
-                            <p>Um projeto de análise de dados exploratória usando Python, Pandas e Matplotlib para visualizar...</p>
-                            <button class="card-botao btn-secondary flip-button">Voltar</button>
                         </div>
                     </div>
                 </div>
@@ -186,6 +182,41 @@
     <footer>
         <p>&copy; 2025 Yuri Gonçalves de Souza. Todos os direitos reservados.</p>
     </footer>
+
+    
+    <div id="modal-overlay" class="modal-overlay"></div>
+    <div id="python-modal" class="modal">
+        <div class="modal-header">
+            <h2>Análise de Dados Demográficos SJC (Pandas)</h2>
+            <button id="close-python-modal" class="modal-close-btn" title="Fechar">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p>Projeto de análise de censo demográfico sobre São José dos Campos (API do 1° semestre de DSM da Fatec SJC):</p>
+            
+            <h4>1° Sprint:</h4>
+            <ul>
+                <li>Fiz algumas das tabelas visuais com os dados disponíveis no censo demográfico IBGE 2022 e 2010 e SidraPy, usando como ferramenta o Google Colab, Flask e Pandas como as linguagens de programação principal (bibliotecas de Python).</li>
+                <li>Também gravei o vídeo demonstrando as tabelas para apresentação do MVP (Produto Mínimo Viável).</li>
+            </ul>
+
+            <h4>2° Sprint:</h4>
+            <ul>
+                <li>Responsável pela integração das tabelas interativas e o mapa dinâmico do município dividido por zonas ao site visual;</li>
+                <li>Gravação do vídeo MVP da Sprint 2 (demosntração do site, com foco na tabela interativa e o mapa dinâmico da cidade);</li>
+                <li>Também responsável pela estilização do site: Adequar as cores requisitadas pela equipe, alinhamentos e ser intuitivo ao usuário;</li>
+                <li>Documentação do GitHub: Responsável por atualizar os documentos e organização dos objetvos descritos no backlog das sprints.</li>
+            </ul>
+
+            <h4>Sprint 3:</h4>
+            <ul>
+                <li>Criação da página "sobre" para o site, contendo o objetivo do projeto e um pouco sobre os membros da equipe.</li>
+                <li>Documentação do GitHub: Responsável por atualizar os documentos e organização dos objetvos descritos no backlog das sprints.</li>
+                <li>Gravação do MVP (Produto Mínimo Viável) para apresentação, demonstrando o site finalizado.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="copy-tooltip">Copiado!</div>
 
     <script src="js/script.js" defer></script>
 </body>

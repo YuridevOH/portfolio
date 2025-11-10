@@ -162,6 +162,15 @@ main {
     transition: color 0.3s;
 }
 .email-link:hover { color: var(--cor-acento-primario); }
+
+/* ADICIONADO: Cursor de ponteiro para elementos copiáveis */
+.copy-email {
+    cursor: pointer;
+}
+.copy-email:hover {
+    color: var(--cor-acento-primario);
+}
+
 .social-links { display: flex; justify-content: center; gap: 20px; }
 .social-icon {
     display: inline-block;
@@ -186,21 +195,19 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
-    /* Adicionado para centralizar cards solitários como o de Python */
     justify-content: center;
 }
 .card-container { 
     perspective: 1000px; 
     height: 350px; 
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Efeito de levantar */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 .card-container:hover {
-    transform: translateY(-5px); /* Levanta o card inteiro */
+    transform: translateY(-5px); 
     box-shadow: 0 15px 35px var(--cor-shadow); 
 }
-/* Classe para cards estáticos (cursos) */
 .card-container-static {
-    height: 350px; /* Altura fixa igual aos outros */
+    height: auto; 
 }
 .card-container-static .card-front {
     position: relative; 
@@ -208,9 +215,8 @@ main {
 }
 .card-container-static:hover {
     transform: none;
-    box-shadow: 0 10px 30px var(--cor-shadow); /* Sombra padrão */
+    box-shadow: 0 10px 30px var(--cor-shadow); 
 }
-/* Efeito de levantar apenas no card estático da frente */
 .card-container-static .card-front:hover {
     transform: translateY(-5px);
     border-color: var(--cor-acento-primario);
@@ -284,14 +290,12 @@ i.card-icon { font-size: 4.5rem; color: var(--cor-texto-primario); }
 .card-quadrado {
     height: 350px; /* Altura fixa */
     width: 350px;  /* Largura fixa */
-    justify-self: center; 
+    justify-self: center;
 }
-/* Ajusta a imagem e o conteúdo para o formato quadrado */
 .card-quadrado .card-imagem {
     height: 180px; /* Mantém a altura da imagem como nos outros cards */
 }
 .card-quadrado .card-content {
-    /* O flex-grow: 1 já vai fazer ele ocupar o resto do espaço */
     padding: 20px;
 }
 
@@ -357,3 +361,120 @@ footer p { font-size: 0.9rem; margin: 0; }
 }
 #voltar-ao-topo-btn.show { display: block; opacity: 1; transform: translateY(0); }
 #voltar-ao-topo-btn:hover { background-color: #ddd; }
+
+
+/* --- ESTILOS: MODAL --- */
+.modal-overlay {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh; /* Altura máxima */
+    background-color: var(--cor-superficie);
+    border-radius: 15px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 10px 40px var(--cor-shadow);
+    z-index: 201;
+    opacity: 0;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+/* Classes .visible para mostrar o modal */
+.modal-overlay.visible,
+.modal.visible {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.modal-overlay.visible {
+    transform: none; /* Overlay não precisa de scale */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--cor-texto-primario);
+}
+.modal-close-btn {
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--cor-texto-secundario);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.3s;
+}
+.modal-close-btn:hover {
+    color: var(--cor-acento-primario);
+}
+
+.modal-content {
+    padding: 25px;
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
+    max-height: calc(80vh - 140px); /* Altura máxima - padding e header */
+}
+.modal-content h4 {
+    font-size: 1.2rem;
+    color: var(--cor-acento-primario);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.modal-content p, .modal-content ul {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--cor-texto-secundario);
+}
+.modal-content ul {
+    padding-left: 20px;
+}
+.modal-content li {
+    margin-bottom: 10px;
+}
+
+/* --- ESTILO: TOOLTIP "COPIADO!" --- */
+#copy-tooltip {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--cor-acento-primario);
+    color: var(--cor-fundo-base);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 300;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Não pode ser clicado */
+}
+
+#copy-tooltip.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
