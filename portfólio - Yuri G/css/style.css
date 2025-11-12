@@ -1,0 +1,480 @@
+/* --- ESTILOS GERAIS E VARIÁVEIS (TEMA GRID ESCURO ESTILO TERMINAL) --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --cor-fundo-base: #1b1b1b;
+    --cor-grid-line: #2a2a2a;
+    --cor-superficie: #282828;
+    --cor-borda: #444;
+    --cor-texto-primario: #f5f5f5;
+    --cor-texto-secundario: #a0a0a0;
+    --cor-acento-primario: #ffffff;
+    --cor-fundo-botao-secundario: transparent;
+    --cor-shadow: rgba(0, 0, 0, 0.4);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--cor-texto-primario);
+    background-color: var(--cor-fundo-base);
+    background-image: 
+        linear-gradient(to right, var(--cor-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--cor-grid-line) 1px, transparent 1px);
+    background-size: 25px 25px;
+    min-height: 100vh;
+}
+
+.titulo-secao {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.titulo-subsecao {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--cor-texto-primario);
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cor-borda);
+}
+.projetos-detalhados-container .titulo-subsecao:first-of-type,
+.galeria-projetos-container .titulo-subsecao:first-of-type { /* Atualizado seletor */
+    margin-top: 20px;
+}
+/* --- HEADER E NAVEGAÇÃO --- */
+header, nav {
+    background-color: var(--cor-superficie);
+    border-bottom: 1px solid var(--cor-borda);
+    box-shadow: 0 4px 15px var(--cor-shadow);
+}
+header { padding: 20px 0; text-align: center; }
+header h1 { font-size: 2.5rem; font-weight: 700; margin: 0; }
+nav { padding: 10px 0; text-align: center; border-top: 1px solid var(--cor-borda); }
+nav a {
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: color 0.3s, background-color 0.3s;
+}
+nav a:hover {
+    background-color: var(--cor-fundo-base);
+    color: var(--cor-texto-primario);
+}
+
+/* --- NAVBAR LATERAL FLUTUANTE --- */
+#sidebar-nav {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) translateX(-100%); /* Começa fora da tela */
+    z-index: 150; /* Acima do botão voltar ao topo */
+    background-color: rgba(40, 40, 40, 0.85); /* Fundo semi-transparente */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--cor-borda);
+    border-left: none; /* Sem borda na parte escondida */
+    border-radius: 0 10px 10px 0;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+#sidebar-nav.visible {
+    transform: translateY(-50%) translateX(0); /* Entra na tela */
+    opacity: 1;
+}
+#sidebar-nav a {
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    font-size: 1.5rem; /* Tamanho dos ícones */
+    transition: color 0.3s, transform 0.3s;
+    text-align: center;
+}
+#sidebar-nav a:hover {
+    color: var(--cor-acento-primario);
+    transform: scale(1.1);
+}
+
+/* --- ESTRUTURA DAS SEÇÕES --- */
+main {
+    width: 100%;
+    overflow: hidden;
+}
+.sobre-container,
+.competencias-container,
+.projetos-container,
+.projetos-detalhados-container,
+.galeria-projetos-container { /* Adicionado novo nome de classe */
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 40px;
+    background-color: var(--cor-superficie);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--cor-shadow);
+    border: 1px solid var(--cor-borda);
+}
+
+/* --- SEÇÃO SOBRE MIM --- */
+.sobre-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+.sobre-container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid var(--cor-borda);
+    box-shadow: 0 0 25px var(--cor-shadow);
+}
+.sobre-texto { max-width: 600px; }
+.sobre-texto h2 { font-size: 2.5rem; margin-bottom: 20px; text-align: left; }
+.sobre-texto p { font-size: 1.1rem; line-height: 1.7; color: var(--cor-texto-secundario); margin-bottom: 30px;}
+
+/* --- INFORMAÇÕES DE CONTATO --- */
+.info-contato {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--cor-borda);
+    text-align: center;
+}
+.email-link {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+}
+.email-link:hover { color: var(--cor-acento-primario); }
+
+/* ADICIONADO: Cursor de ponteiro para elementos copiáveis */
+.copy-email {
+    cursor: pointer;
+}
+.copy-email:hover {
+    color: var(--cor-acento-primario);
+}
+
+.social-links { display: flex; justify-content: center; gap: 20px; }
+.social-icon {
+    display: inline-block;
+    font-size: 1.8rem;
+    color: var(--cor-texto-secundario);
+    transition: color 0.3s, transform 0.3s;
+}
+.social-icon:hover { color: var(--cor-acento-primario); transform: translateY(-3px); }
+
+/* --- BOTÃO DOWNLOAD CV --- */
+.botao-download-container {
+    margin-top: 30px; /* Adiciona espaço acima do botão */
+    text-align: center; /* Centraliza o botão */
+}
+.download-cv-btn i {
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+    vertical-align: middle; /* Alinha o ícone com o texto */
+}
+
+/* --- ESTRUTURA GERAL DOS CARDS --- */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+.card-container { 
+    perspective: 1000px; 
+    height: 350px; 
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+.card-container:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 35px var(--cor-shadow); 
+}
+.card-container-static {
+    height: auto; 
+}
+.card-container-static .card-front {
+    position: relative; 
+    height: 100%; 
+}
+.card-container-static:hover {
+    transform: none;
+    box-shadow: 0 10px 30px var(--cor-shadow); 
+}
+.card-container-static .card-front:hover {
+    transform: translateY(-5px);
+    border-color: var(--cor-acento-primario);
+}
+
+
+.card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.7s; transform-style: preserve-3d; }
+.card-container.is-flipped .card-inner { transform: rotateY(180deg); }
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--cor-shadow);
+    border: 1px solid var(--cor-borda);
+    background-color: var(--cor-superficie);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+.card-back { padding: 25px; justify-content: center; align-items: center; transform: rotateY(180deg); }
+.card-back p { font-size: 1rem; line-height: 1.6; text-align: center; margin-bottom: 20px; color: var(--cor-texto-secundario); }
+.card-back h4 { margin: 0 0 15px 0; font-size: 1.25rem; }
+
+/* --- CARDS DE COMPETÊNCIA --- */
+.card-front.card-competencia {
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+.card-front.card-competencia:hover { 
+    border-color: var(--cor-acento-primario);
+}
+i.card-icon { font-size: 4.5rem; color: var(--cor-texto-primario); }
+.card-title { font-size: 1.25rem; font-weight: 600; color: var(--cor-texto-primario); text-align: center; }
+
+/* --- CARDS DE PROJETO --- */
+.card-front.card-projeto { justify-content: flex-start; }
+.card-imagem { 
+    width: 100%; 
+    height: 180px; 
+    object-fit: contain; /* Imagem inteira */
+    background-color: var(--cor-fundo-base); /* Fundo escuro */
+}
+.card-content { 
+    padding: 20px; 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    background: none;
+    position: relative;
+    z-index: auto;
+}
+.card-content .card-title { 
+    margin: 0; 
+    color: var(--cor-texto-primario); 
+}
+.card-botoes { 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    margin-top: auto; 
+    padding-top: 20px; 
+}
+
+/* --- ESTILO PARA CARD QUADRADO (PYTHON E CURSOS) --- */
+.card-quadrado {
+    height: 350px; /* Altura fixa */
+    width: 350px;  /* Largura fixa */
+    justify-self: center;
+}
+.card-quadrado .card-imagem {
+    height: 180px; /* Mantém a altura da imagem como nos outros cards */
+}
+.card-quadrado .card-content {
+    padding: 20px;
+}
+
+
+/* Classe para centralizar um único botão no card */
+.card-botoes-single { justify-content: center; }
+.card-botoes-single .download-cv-btn i { margin-right: 8px; vertical-align: middle; }
+
+/* --- ESTILOS DOS BOTÕES --- */
+.card-botao { border: 1px solid transparent; padding: 10px 22px; border-radius: 50px; cursor: pointer; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease; }
+.btn-primary { background-color: var(--cor-acento-primario); color: #111; border-color: var(--cor-acento-primario); }
+.btn-primary:hover { background-color: transparent; color: var(--cor-acento-primario); }
+.btn-secondary { background-color: var(--cor-fundo-botao-secundario); color: var(--cor-texto-secundario); border-color: var(--cor-borda); }
+.btn-secondary:hover { background-color: var(--cor-fundo-base); color: var(--cor-texto-primario); border-color: var(--cor-texto-primario); }
+
+
+/* --- SEÇÃO CARROSSEL --- */
+.projetos-container { max-width: 1100px; margin: 80px auto; padding: 40px; }
+.carrossel { max-width: 900px; margin: 0 auto; overflow: hidden; position: relative; border-radius: 15px; box-shadow: 0 10px 30px var(--cor-shadow); }
+.carrossel-inner { 
+    display: flex;
+    transition: transform 0.8s ease-in-out; 
+}
+.carrossel img {
+    height: 100%;
+    object-fit: contain; /* Mostra a imagem inteira sem zoom */
+    aspect-ratio: 16 / 9;
+}
+    
+/* --- RODAPÉ --- */
+footer {
+    background-color: var(--cor-superficie);
+    color: var(--cor-texto-secundario);
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid var(--cor-borda);
+    margin-top: 80px;
+    box-shadow: 0 -4px 15px var(--cor-shadow);
+}
+footer p { font-size: 0.9rem; margin: 0; }
+
+/* --- BOTÃO VOLTAR AO TOPO --- */
+#voltar-ao-topo-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    width: 50px;
+    height: 50px;
+    background-color: var(--cor-acento-primario);
+    color: var(--cor-fundo-base);
+    border: none;
+    border-radius: 50%;
+    font-size: 2rem;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px var(--cor-shadow);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s;
+}
+#voltar-ao-topo-btn.show { display: block; opacity: 1; transform: translateY(0); }
+#voltar-ao-topo-btn:hover { background-color: #ddd; }
+
+
+/* --- ESTILOS: MODAL --- */
+.modal-overlay {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 200;
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh; /* Altura máxima */
+    background-color: var(--cor-superficie);
+    border-radius: 15px;
+    border: 1px solid var(--cor-borda);
+    box-shadow: 0 10px 40px var(--cor-shadow);
+    z-index: 201;
+    opacity: 0;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+/* Classes .visible para mostrar o modal */
+.modal-overlay.visible,
+.modal.visible {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.modal-overlay.visible {
+    transform: none; /* Overlay não precisa de scale */
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--cor-texto-primario);
+}
+.modal-close-btn {
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--cor-texto-secundario);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.3s;
+}
+.modal-close-btn:hover {
+    color: var(--cor-acento-primario);
+}
+
+.modal-content {
+    padding: 25px;
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito grande */
+    max-height: calc(80vh - 140px); /* Altura máxima - padding e header */
+}
+.modal-content h4 {
+    font-size: 1.2rem;
+    color: var(--cor-acento-primario);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.modal-content p, .modal-content ul {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--cor-texto-secundario);
+}
+.modal-content ul {
+    padding-left: 20px;
+}
+.modal-content li {
+    margin-bottom: 10px;
+}
+
+/* --- ESTILO: TOOLTIP "COPIADO!" --- */
+#copy-tooltip {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--cor-acento-primario);
+    color: var(--cor-fundo-base);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 300;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Não pode ser clicado */
+}
+
+#copy-tooltip.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+}
